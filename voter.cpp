@@ -6,35 +6,39 @@ Voter::Voter(){
 	setAltID("");
 	setVoterID();
 	setVotingStation();
+
+	countID++;
 }
+
+int Voter::countID = 100;
 
 std::string Voter::getVoterName(){
-	return voterName;	
+	return this->voterName;	
 }
 
 
-void Voter::setVoterName(string name){
-	this.voterName = name;	
+void Voter::setVoterName(std::string name){
+	this->voterName = name;	
 }
 
 int Voter::getUwfID(){
-	return this.uwfID;	
+	return this->uwfID;	
 }
 
 void Voter::setUwfID(int ID){
-	this.uwfID = ID;
+	this->uwfID = ID;
 }
 
 std::string Voter::getAltID(){
-	return this.altID;
+	return this->altID;
 }
 
-void Voter::setAltID(string ID){
-	this.altID = D;
+void Voter::setAltID(std::string ID){
+	this->altID = ID;
 }
 
 std::string Voter::getVoterID(){
-	return this.voterID;
+	return this->voterID;
 }
 
 void Voter::setVoterID(){ //randomizes voter ID
@@ -54,11 +58,11 @@ void Voter::setVoterID(){ //randomizes voter ID
 	ID += countID;
 	countID++;
 	
-	this.voterID = ID;
+	this->voterID = ID;
 }
 
 int Voter::getVotingStation(){
-	return this.votingStation;
+	return this->votingStation;
 }
 
 void Voter::setVotingStation(){//randomizes voter station

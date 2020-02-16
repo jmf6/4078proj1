@@ -12,7 +12,7 @@ class Voter{
 		std::string voterID;
 		int votingStation;
 		std::vector<Voter> voters;
-		static int countID = 100;
+		static int countID;
 		
 		
 	public:

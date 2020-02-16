@@ -11,8 +11,8 @@ int main(){
 	//inputFile.open("input.dat");
 	//outputFile.open("output.dat");
 	
-	Voter v = new Voter();
+	Voter *v = new Voter();
 	
-	cout << getVoterID();
+	cout << v->getVoterID();
 	
 }
