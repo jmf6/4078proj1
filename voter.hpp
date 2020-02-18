@@ -11,12 +11,12 @@ class Voter{
 		std::string altID;
 		std::string voterID;
 		int votingStation;
-		std::vector<Voter> voters;
 		static int countID;
 		
 		
 	public:
 		Voter();
+		Voter(std::string name, int ID, std::string altID);
 		std::string getVoterName();
 		void setVoterName(std::string name);
 		int getUwfID();

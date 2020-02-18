@@ -10,6 +10,16 @@ Voter::Voter(){
 	countID++;
 }
 
+Voter::Voter(std::string name, int ID, std::string altID){
+	setVoterName(name);
+	setUwfID(ID);
+	setAltID(altID);
+	setVoterID();
+	setVotingStation();
+
+	countID++;
+}
+
 int Voter::countID = 100;
 
 std::string Voter::getVoterName(){
@@ -66,6 +76,10 @@ int Voter::getVotingStation(){
 }
 
 void Voter::setVotingStation(){//randomizes voter station
+	srand(time(NULL));
 
+	int r = rand() % 9 + 1;
+
+	this->votingStation = r;
 	
 }
