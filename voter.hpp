@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 
 class Voter{
 	private:
@@ -27,6 +29,7 @@ class Voter{
 		void setVoterID(); //randomizes voter ID
 		int getVotingStation();
 		void setVotingStation();//randomizes voter station
+		std::string toString();
 };
 
 #endif

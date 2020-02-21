@@ -1,5 +1,5 @@
 #include "voter.hpp"
-
+#include <string>
 Voter::Voter(){
 	setVoterName("");
 	setUwfID(0);
@@ -55,8 +55,6 @@ void Voter::setVoterID(){ //randomizes voter ID
 	char c;
     int r;
 	std::string ID = "";
-	
-	srand (time(NULL));
 
 	for(int i = 0; i < 2; i++){
     	r = rand() % 26;
@@ -65,8 +63,7 @@ void Voter::setVoterID(){ //randomizes voter ID
 		ID += c;
 	}
 	
-	ID += countID;
-	countID++;
+	ID += std::to_string(countID);
 	
 	this->voterID = ID;
 }
@@ -76,10 +73,15 @@ int Voter::getVotingStation(){
 }
 
 void Voter::setVotingStation(){//randomizes voter station
-	srand(time(NULL));
 
 	int r = rand() % 9 + 1;
 
 	this->votingStation = r;
 	
+}
+
+std::string Voter::toString(){	
+	std::string r =  getVoterName() + " " + std::to_string(getUwfID()) + " " + getAltID() + " " + getVoterID() + " " + std::to_string(getVotingStation());
+
+	return r;
 }
