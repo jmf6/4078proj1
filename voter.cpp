@@ -31,11 +31,11 @@ void Voter::setVoterName(std::string name){
 	this->voterName = name;	
 }
 
-int Voter::getUwfID(){
+unsigned int Voter::getUwfID(){
 	return this->uwfID;	
 }
 
-void Voter::setUwfID(int ID){
+void Voter::setUwfID(unsigned int ID){
 	this->uwfID = ID;
 }
 

@@ -10,7 +10,7 @@ int main(){
 	ifstream inStream;
 	ofstream outStream;
 	string name;
-	int UwfID;
+	unsigned int UwfID;
 	string altID;
 	string temp;
 	vector<Voter> voters;
@@ -22,13 +22,52 @@ int main(){
 
 	while(!inStream.eof()){
 		inStream >> name;
-		inStream >> UwfID;
+		inStream >> temp;
 		inStream >> altID;
-	
-		Voter v = Voter(name, UwfID, altID);
-		voters.push_back(v);
-		outStream << v.toString() << endl;
-		cout << v.toString() << endl;
+		
+		bool test = false;
+
+		try{
+                        UwfID = stoul(temp);
+                }
+                catch(invalid_argument& a){
+                        UwfID = 0;
+                        test = true;
+                }
+                catch(out_of_range& o){
+                        UwfID = 0;
+                        test = true;
+                }
+
+                for(unsigned int i = 0; i < voters.size(); i++){
+                        if(UwfID == voters.at(i).getUwfID()){
+                               test = true;
+                        }
+                }
+
+                if(name.length() >= 500){
+                        test = true;
+                }
+                else if(altID.length() >= 500){
+                        test = true;
+                }
+                else if(altID == ""){
+                        test = true;
+                }
+                else if(UwfID < 100000 || UwfID > 999999){
+                        test = true;
+                }
+
+                if(!test){
+                        Voter v = Voter(name, UwfID, altID);
+			for(unsigned int i = 0; i < voters.size(); i++){
+                                if(v.getVoterID() == voters.at(i).getVoterID()){
+                                        v.setVoterID();
+                                }
+                        }
+                        voters.push_back(v);
+                        outStream << v.toString() << endl;
+                }
 	}
 
 	cout << "Welcome to Voting Registration" << endl;
@@ -43,46 +82,59 @@ int main(){
 		        return 0;
 	        }
 	        cout << "6 digit UWF ID> ";
-	        cin >> UwfID;
 	
-        	//getline(cin, temp);
-        	//do something with this to check if positive integer
+        	getline(cin, temp);
+
         	cout << "Alternate ID> ";
-        	cin.ignore();
+        	//cin.ignore();
         	getline(cin, altID);
-        	for(int i = 0; i < voters.size(); i++){
+
+		try{
+                        UwfID = stoul(temp);
+                }
+                catch(invalid_argument& a){
+			UwfID = 0;
+                        invalid = true;
+                }
+                catch(out_of_range& o){
+                       	UwfID = 0;
+		       	invalid = true;
+                }
+
+        	for(unsigned int i = 0; i < voters.size(); i++){
         		if(UwfID == voters.at(i).getUwfID()){
-        		       cout << "Invalid input" << endl;
                                invalid = true;
                         }
                 }
 
         	if(name.length() >= 500){
-        		cout << "Invalid input" << endl;
         		invalid = true;
         	}
         	else if(altID.length() >= 500){
-        		cout << "Invalid input" << endl;
         		invalid = true;
         	}
         	else if(altID == ""){
-        		cout << "Invalid input" << endl;
         		invalid = true;
         	}
         	else if(UwfID < 100000 || UwfID > 999999){
-        		cout << "Invalid input" << endl;
         		invalid = true;
         	}
-        	//need to check for non-numeric input
-        	//need to check for overflow for int value
-        	//need to check for negative input
-        	
+
         	if(!invalid){
         		Voter v = Voter(name, UwfID, altID);
-        		voters.push_back(v);
-        		outStream << v.toString() << endl;
-        		cout << v.toString() << endl;
-        	}
+			for(unsigned int i = 0; i < voters.size(); i++){
+				if(v.getVoterID() == voters.at(i).getVoterID()){
+					v.setVoterID();
+				}
+			}
+        			voters.push_back(v);
+        			outStream << v.toString() << endl;
+				 cout << v.getVoterName() << " is assigned VoterID " << v.getVoterID() << " at Voting Station " << v.getVotingStation() << endl;
+		}
+
+		else{
+			cout << "Invalid input" << endl;
+		}
 	}while(name != "");
 	return 0;
 }

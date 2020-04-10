@@ -9,7 +9,7 @@
 class Voter{
 	private:
 		std::string voterName;
-		int uwfID;
+		unsigned int uwfID;
 		std::string altID;
 		std::string voterID;
 		int votingStation;
@@ -21,8 +21,8 @@ class Voter{
 		Voter(std::string name, int ID, std::string altID);
 		std::string getVoterName();
 		void setVoterName(std::string name);
-		int getUwfID();
-		void setUwfID(int ID);
+		unsigned int getUwfID();
+		void setUwfID(unsigned int ID);
 		std::string getAltID();
 		void setAltID(std::string altID);
 		std::string getVoterID();
